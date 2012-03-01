@@ -1,6 +1,6 @@
 ################################################################################
 ### Simple examples on the use of classes 'ContinuousProcess',
-### 'markedPointProcess' and 'JumpProcess'. 
+### 'MarkedPointProcess' and 'JumpProcess'. 
 ################################################################################
 
 ## First we load the example data. The data sets are 'contExam' of class
@@ -9,9 +9,13 @@
 
 data(example)
 
-### Showing data. 
+### Showing data structure. 
 
 contExam
+
+### Summarizing the data.
+
+summary(contExam)
 
 ## Plotting data.
 
@@ -31,18 +35,19 @@ plot(subset(contExam, subset = (time > 4 & gender == "F"), select = foo))
 ## Modifying plot using ggplot2.
 
 plot(subset(contExam, id == "A")) + geom_point()
-plot(contExam) + facet_grid(.~.)
+plot(contExam) + facet_null()
 
 ## More sophisticated plots can be produced, e.g. different uses of
 ## faceting and grouping.
 
-plot(contExam) + facet_grid(variable ~ .)
+plot(contExam) + facet_grid(variable ~ ., scale = "free_y")
 
 ## To do this depending on unit-specific variables we must specify an
 ## additional argument to the plot such that these variables are
 ## included in the plot data.
 
-plot(contExam, allUnitData = TRUE) + facet_grid(variable ~ gender)
+plot(contExam, allUnitData = TRUE) +
+  facet_grid(variable ~ gender, scale = "free_y")
 
 
 ## Subsetting to non-contiguous subsets of the time axis is
@@ -51,10 +56,20 @@ plot(contExam, allUnitData = TRUE) + facet_grid(variable ~ gender)
 
 plot(subset(contExam, id == "A" & (time < 2 | time > 4)))
 
-## Printing a MarkedPointProcess object gives additional
-## informations the number of points for each unit and each mark. 
+## Factor columns are plotting using a different aesthetic mapping.
 
-pointExam
+plot(factExam)
+
+## The default is to drop one level (the first), but this can be
+## changed or bypassed by setting the 'dropLevels argument.
+
+plot(factExam, dropLevels = 2)
+plot(factExam, dropLevels = NULL)
+
+## Summarizing a MarkedPointProcess object gives additional
+## informations on the number of points for each unit and each mark. 
+
+summary(pointExam)
 
 ## A combined plot for unit "A". 
 
@@ -62,27 +77,28 @@ plot(subset(pointExam, id =="A"))
 
 ## Plotting the point process data only.
 
-plot(pointExam[,-(1:3)])
+plot(pointExam[, -(1:3)])
 
 ## Or a slightly different version.
 
-plot(pointExam[,-(1:3)], y = "id") + facet_grid(.~.)
+plot(pointExam[, -(1:3)], y = "id") + facet_null()
 
 ## Plotting the continuous process data only.
 
-plot(pointExam[,-c(4,5)])
+plot(pointExam[, -c(4,5)])
 
 ## or 
 
 plot(as(pointExam, "ContinuousProcess"))
 
-## Using ggplot2 for modifications of plot.
+## Some modifications of the plot.
 
-plot(pointExam, allUnitData = TRUE) + facet_grid(contVariable ~ gender, scales="free_y")
-plot(pointExam, y = "foo", allUnitData = TRUE) + facet_grid(contVariable ~ gender, scales = "free_y")
-plot(pointExam, y = "@top", allUnitData = TRUE) + facet_grid(contVariable ~ gender, scales = "free_y")
-plot(pointExam, y = "@bottom", allUnitData = TRUE) + facet_grid(contVariable ~ gender, scales = "free_y")
-plot(pointExam, y = "id") + facet_grid(.~.)
+plot(pointExam, allUnitData = TRUE) + facet_grid(.~gender)
+plot(pointExam, y = "id", allUnitData = TRUE) + facet_grid(variable~gender, scale = "free_y")
+plot(pointExam, y = "foo") 
+plot(pointExam, y = "@top", allUnitData = TRUE) + facet_grid(.~gender)
+plot(pointExam, y = "@bottom", allUnitData = TRUE) + facet_grid(gender~., scales = "free_y")
+plot(pointExam, y = "id") + facet_null()
 
 ## A 'JumpProcess' data set has points with the same marks as the variable names
 ## in the 'ContinuousProcess' part of the data set. In addition, to each point

@@ -1,20 +1,18 @@
 Package: processdata
 Type: Package
 Title: Process Data
-Version: 0.7
-Date: 2010-10-07
+Version: 0.8
+Date: 2012-03-01
 Author: Niels Richard Hansen <Niels.R.Hansen@math.ku.dk>.
 Maintainer: Niels Richard Hansen <Niels.R.Hansen@math.ku.dk>
-Depends: R (>= 2.11.1), ggplot2, Matrix, methods
+Depends: R (>= 2.14.1), ggplot2, methods, reshape2
 Suggests: RUnit
 Description: This package implements data structures for stochastic
-        processes, which consists of either discretely observed
+        process data, which consists of either discretely observed
         continuous time processes, marked point processes or a
         combination.
 License: GPL (>= 2)
 LazyLoad: yes
+Packaged: 2012-03-02 13:00:05 UTC; nielsrichardhansen
 Repository: CRAN
-Repository/R-Forge/Project: multdiff
-Repository/R-Forge/Revision: 53
-Date/Publication: 2010-10-09 07:30:13
-Packaged: 2010-10-06 20:50:42 UTC; rforge
+Date/Publication: 2012-03-02 14:13:15
