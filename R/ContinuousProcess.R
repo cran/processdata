@@ -197,7 +197,7 @@ setMethod("continuousProcess", "list",
                 eqd <- equiDistance
               } 
               for(v in levels(id)) {
-                position[idLevels[[v]]] <- eqd*seq(0, length(idLevels[[v]])-1)
+                position[idLevels[[v]]] <- eqd*c(0L, seq_len(length(idLevels[[v]])-1))
               }
             } else {
               if(is.null(ord)) {
@@ -646,6 +646,7 @@ setMethod("getPlotData", "ContinuousProcess",
             if("value" %in% names(continuousPlotData)) {
               limits <- range(continuousPlotData$value)
               breaks <- pretty(limits, 4)
+              limits <- range(c(breaks, limits))
               labels <- as.character(breaks)
             } else {
               limits <- c(-1, 0)
