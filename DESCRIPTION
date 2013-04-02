@@ -1,8 +1,8 @@
 Package: processdata
 Type: Package
 Title: Process Data
-Version: 0.8.1
-Date: 2012-03-07
+Version: 0.8.2
+Date: 2013-04-02
 Author: Niels Richard Hansen <Niels.R.Hansen@math.ku.dk>.
 Maintainer: Niels Richard Hansen <Niels.R.Hansen@math.ku.dk>
 Depends: R (>= 2.14.1), ggplot2, methods, reshape2
@@ -13,6 +13,7 @@ Description: This package implements data structures for stochastic
         combination.
 License: GPL (>= 2)
 LazyLoad: yes
-Packaged: 2012-05-10 13:40:47 UTC; Niels
+Packaged: 2013-04-02 18:46:56 UTC; richard
+NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2012-05-11 05:13:58
+Date/Publication: 2013-04-02 21:57:19
